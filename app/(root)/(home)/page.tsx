@@ -1,6 +1,5 @@
 import { UserButton } from '@clerk/nextjs'
 import Image from 'next/image'
-import { join } from 'path'
 
 export default function Home() {
   return (

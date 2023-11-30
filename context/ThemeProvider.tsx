@@ -1,34 +1,35 @@
 'use client'
-import React, {useEffect, useContext, useState, createContext, use} from "react";
+import React, {useEffect, useContext, useState, createContext} from "react";
 
 interface ThemeContextType {    
-    theme: string;
-    handleThemeChange: () => void;
+    mode: string;
+    setMode: (mode: string) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export default function ThemeProvider({children} : {children: React.ReactNode}) {
-  const [theme, setTheme] = useState('light');
+export function ThemeProvider({children} : {children: React.ReactNode}) {
+  const [mode, setMode] = useState('dark');
+  console.log(mode);
 
   const handleThemeChange = () => {
-    if (theme === 'light') {
-        setTheme('dark');
-        document.documentElement.classList.add('dark');
-    } else {
-        setTheme('light');
-        document.documentElement.classList.remove('dark');
+    if (mode === 'dark') {
+        setMode('light');
         document.documentElement.classList.add('light');
+    } else {
+        setMode('dark');
+        document.documentElement.classList.add('dark');
     }
   }
 
 
   useEffect(() => {
-    handleThemeChange();
-  }, [theme]);
+    handleThemeChange;
+    console.log(mode);
+  }, [mode]);
 
   return (
-    <ThemeContext.Provider value={{theme, handleThemeChange}}>
+    <ThemeContext.Provider value={{mode, setMode}}>
       {children}
     </ThemeContext.Provider>
   )
