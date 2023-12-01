@@ -16,7 +16,26 @@ export const sidebarLinks: SidebarLink[] = [
         route: '/comminity',
         label: 'Community',
     },
-    {}
+    {
+        imgURL: '/assets/icons/star.svg',
+        route: '/collection',
+        label: 'Collections',
+    },
+    {
+        imgURL: '/assets/icons/suitcase.svg',
+        route: '/jobs',
+        label: 'Find Jobs',
+    },
+    {
+        imgURL: '/assets/icons/user.svg',
+        route: '/profile',
+        label: 'Profile',
+    },
+    {
+        imgURL: '/assets/icons/question.svg',
+        route: '/ask-question',
+        label: 'Ask a Question',
+    },
 ]
 
 export const BADGE_CRITERIA = {
