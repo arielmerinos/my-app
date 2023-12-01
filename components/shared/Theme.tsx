@@ -21,31 +21,41 @@ const Theme = () => {
     const {mode, setMode} = useTheme();
 
   return (
-    <Menubar className='relative border-none bg-transparend shadow-none'>
+    <Menubar className='relative border-none bg-transparent shadow-none'>
         <MenubarMenu>
             <MenubarTrigger
             className='focus:bg-light-900 data-[state=open]:bg-light-900 dark:focus:bg-dark-200 dark:data-[state=open]:bg-dark-200 dark:bg-dark-300'
             >
-                {mode == 'light' ? (<Image src='/assets/icons/sun.svg' width={23} height={23} alt='OverflowDev Logo' />): (<Image src='/assets/icons/moon.svg' width={23} height={23} alt='OverflowDev Logo' />)
+                {mode === 'light' ? (
+                <Image 
+                src='/assets/icons/sun.svg' 
+                width={23} 
+                height={23} 
+                alt='sun' 
+                className='active-theme' />
+                ) : (
+                <Image 
+                src='/assets/icons/moon.svg' 
+                width={23} 
+                height={23} 
+                alt='moon' 
+                className='active-theme' />)
                 }
             </MenubarTrigger>
-            <MenubarContent
-            className='absolute right-[-3rem] mt-3 min-w-[120px] rounded border py-2 dark:border-dark-400 dark:text-light-700'
-            >
+            <MenubarContent className='absolute right-[-3rem] mt-3 min-w-[120px] rounded border py-2 dark:border-dark-400 dark:bg-dark-300 dark:text-light-700'>
                 {themes.map((item) => (
                     <MenubarItem
                     key={item.value}
                     className='flex items-center gap-4 px-2.5 py-2 dark:focus:bg-dark-400'
-                    onClick={() => {setMode(item.value)
+                    onClick={() => {
+                      setMode(item.value)
                       if(item.value !== 'system') {
                         localStorage.theme = item.value
                       }else{
                         localStorage.removeItem('theme')
                       }
                     }
-                    }
-                    
-                    >
+                    }>
                         <Image 
                         src={item.icon}
                         alt={item.value}
@@ -54,8 +64,9 @@ const Theme = () => {
                         className={`${mode === item.value && 'active-theme'}`}
                         />
                         <p className={`body-semibold text-light-500 ${mode === item.value ? 'text-primary-500': 'text-dark100_light500'}`}>{item.label}</p>
-                    </MenubarItem>))
-                    }
+                    </MenubarItem>
+                    ))
+                  }
             </MenubarContent>
         </MenubarMenu>
     </Menubar>
